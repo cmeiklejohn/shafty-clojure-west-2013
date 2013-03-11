@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>shafty</title>
+    <meta charset="utf-8">
+    <style>
+    @import url(stack.css);
+
+    .caption {
+      font-size: 96px;
+      text-align: center;
+      text-shadow: 0px 2px 6px rgba(0,0,0,.5);
+    }
+
+    img {
+      border: 1px solid black;
+    }
+
+    h1.no-bottom-margin {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 48px;
+    }
+
+    .no-margins {
+      margin-top: 0px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      margin-left: 0px;
+      list-style-type: none;
+      margin-left: 0px;
+      padding-left: 0px;
+    }
+
+    li {
+      margin: 5px;
+    }
+
+    ul.right {
+      color: #ccc;
+      font-size: 32px;
+      text-align: right;
+      margin-right: 50px;
+      list-style-type: none;
+    }
+
+    pre {
+      font-size: 28px;
+    }
+    </style>
+  </head>
+  <body class="overview">
+    <section>
+    <h1 class="no-bottom-margin">shafty</h1>
+    <h2>a functional reactive programming library</h2>
+    </section>
+
+    <section>
+    <h1>me</h1>
+
+    <ul>
+      <li>christopher meiklejohn</li>
+      <li>@cmeik</li>
+      <li>cmeiklejohn@basho.com</li>
+    </ul>
+    </section>
+
+    <section>
+    <h1>what's shafty?</h1>
+
+    <ul>
+      <li>functional reactive programming "toolkit"</li>
+      <li>based on Flapjax</li>
+      <li>implemented in ClojureScript</li>
+    </ul>
+    </section>
+
+    <section>
+    <h1>flapjax</h1>
+
+    <ul>
+      <li>functional reactive progrmming language/library</li>
+      <li>authored in JavaScript</li>
+      <li>core API / DOM API</li>
+    </ul>
+    </section>
+
+    <section>
+    <h1>shafty</h1>
+
+    <ul>
+      <li>implementation of the core API</li>
+      <li>meant to be a micro library</li>
+    </ul>
+    </section>
+
+    <section>
+    <h1 class="caption no-margins">example #1</h1>
+
+    <pre>
+    (defn timer []
+      (-> (timer! 10000 (fn [] (js/Date.)))
+          (map! (fn [x] (.log js/console "Timer ticked.") x)))))
+
+    (-> (event! (get-element "save-button") "click")
+        (map! (fn [x] (.log js/console "Button clicked.") x))
+        (merge! (timer))
+        (snapshot! (live-content))
+        (map! build-request)
+        (requests!))
+    </pre>
+    </section>
+
+    <section>
+    <h1 class="caption no-margins">example #2</h1>
+
+    <pre>
+    (defn timer []
+      (-> (timer! 1000 (fn [] (js/Date.)))
+          (map! (fn [x]
+            (.log js/console (str "Ticked at: " x)) x))
+          (hold! (js/Date.))))
+
+    (-> (event! (get-element "reset-button") "click")
+        (snapshot! timer)
+        (map! (fn [x]
+          (.log js/console (str "Clicked at: " x)) x))
+        (hold! (js/Date.)))
+    </pre>
+    </section>
+
+    <section>
+    <h1>what's next?</h1>
+
+    <ul>
+      <li>transparent reactivity via macros</li>
+      <li>testing!</li>
+      <li>replacement of Flapjax in CLJS projects</li>
+      <li>useful in Clojure?</li>
+    </ul>
+    </section>
+
+    <section>
+    <h1>questions?</h1>
+    </section>
+
+    <script src="d3.v2.js"></script>
+    <script src="stack.v0.js"></script>
+  </body>
+</html>
