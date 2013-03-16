@@ -83,7 +83,7 @@
     <h1>flapjax</h1>
 
     <ul>
-      <li>functional reactive programming language/library</li>
+      <li>functional reactive programming</li>
       <li>authored in JavaScript</li>
       <li>core API / DOM API</li>
     </ul>
@@ -95,6 +95,7 @@
     <ul>
       <li>implementation of the core API</li>
       <li>meant to be a micro library</li>
+      <li>event streams and behaviours</li>
     </ul>
     </section>
 
@@ -109,9 +110,6 @@
     (-> (event! (get-element "save-button") "click")
         (map! (fn [x] (.log js/console "Button clicked.") x))
         (merge! (timer))
-        (snapshot! (live-content))
-        (map! build-request)
-        (requests!))
     </pre>
     </section>
 
