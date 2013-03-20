@@ -103,13 +103,10 @@
     <h1 class="caption no-margins">example #1</h1>
 
     <pre>
-    (defn timer []
-      (-> (timer! 10000 (fn [] (js/Date.)))
-          (map! (fn [x] (.log js/console "Timer ticked.") x)))))
-
-    (-> (event! (get-element "save-button") "click")
-        (map! (fn [x] (.log js/console "Button clicked.") x))
-        (merge! (timer))
+    (->>
+      (timer! 1000)
+      (map! (fn [x]
+        (.log js/console (str "Example 1 fired at " x)) x)))
     </pre>
     </section>
 
@@ -117,29 +114,18 @@
     <h1 class="caption no-margins">example #2</h1>
 
     <pre>
-    (defn timer []
-      (-> (timer! 1000 (fn [] (js/Date.)))
-          (map! (fn [x]
-            (.log js/console (str "Ticked at: " x)) x))
-          (hold! (js/Date.))))
+    (def my-random-number
+      (->>
+        (timer! 1000 #(.random js/Math))
+        (hold! 0)))
 
-    (-> (event! (get-element "reset-button") "click")
-        (snapshot! timer)
-        (map! (fn [x]
-          (.log js/console (str "Clicked at: " x)) x))
-        (hold! (js/Date.)))
+    (deref my-random-number)
+
+    (def my-random-number-plus-one
+        (lift! (fn [x] (+ x 1))) my-random-number))
+
+    (deref my-random-number-plus-one)
     </pre>
-    </section>
-
-    <section>
-    <h1>what's next?</h1>
-
-    <ul>
-      <li>transparent reactivity via macros</li>
-      <li>testing!</li>
-      <li>replacement of Flapjax in CLJS projects</li>
-      <li>useful in Clojure?</li>
-    </ul>
     </section>
 
     <section>
