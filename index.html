@@ -143,7 +143,7 @@
     (deref my-random-number)
 
     (def my-random-number-plus-one
-        (lift! (fn [x] (+ x 1))) my-random-number))
+        (lift! inc my-random-number))
 
     (deref my-random-number-plus-one)
     </pre>
@@ -163,6 +163,7 @@
       <li>map!</li>
       <li>not!</li>
       <li>delay!</li>
+      <li>collect!</li>
       <li>filter!</li>
       <li>send!</li>
       <li>once!</li>
