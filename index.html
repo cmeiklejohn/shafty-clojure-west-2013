@@ -6,6 +6,18 @@
     <style>
     @import url(stack.css);
 
+    ul.inline-list li {
+      display: inline-block;
+    }
+
+    ul.inline-list li:nth-child(even) {
+      color: #999;
+    }
+
+    ul.inline-list li:nth-child(odd) {
+      color: #ccc;
+    }
+
     .caption {
       font-size: 96px;
       text-align: center;
@@ -95,12 +107,21 @@
     <ul>
       <li>implementation of the core API</li>
       <li>meant to be a micro library</li>
-      <li>event streams and behaviours</li>
     </ul>
     </section>
 
     <section>
-    <h1 class="caption no-margins">example #1</h1>
+    <h1>quick review of FRP</h1>
+
+    <ul>
+      <li>events / event streams</li>
+      <li>behaviours (event streams &amp; last computed value)</li>
+      <li>topological propagation</li>
+    </ul>
+    </section>
+
+    <section>
+    <h1 class="caption no-margins">event stream example</h1>
 
     <pre>
     (->>
@@ -111,7 +132,7 @@
     </section>
 
     <section>
-    <h1 class="caption no-margins">example #2</h1>
+    <h1 class="caption no-margins">behaviour example</h1>
 
     <pre>
     (def my-random-number
@@ -126,6 +147,30 @@
 
     (deref my-random-number-plus-one)
     </pre>
+    </section>
+
+    <section>
+    <h1>operations</h1>
+
+    <ul class="inline-list">
+      <li>send!</li>
+      <li>hold!</li>
+      <li>merge!</li>
+      <li>constant!</li>
+      <li>changes!</li>
+      <li>bind!</li>
+      <li>switch!</li>
+      <li>map!</li>
+      <li>not!</li>
+      <li>delay!</li>
+      <li>filter!</li>
+      <li>send!</li>
+      <li>once!</li>
+      <li>lift!</li>
+      <li>skip-first!</li>
+      <li>filter-repeats!</li>
+      <li>snapshot!</li>
+    </ul>
     </section>
 
     <section>
